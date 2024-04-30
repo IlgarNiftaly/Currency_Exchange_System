@@ -1,6 +1,7 @@
 package com.binary.uniTech.service.user;
 
 import com.binary.uniTech.entity.User;
+import com.binary.uniTech.exception.UserConflictException;
 import com.binary.uniTech.mapper.UserMapper;
 import com.binary.uniTech.repository.UserRepository;
 import com.binary.uniTech.request.user.UserRegisterRequest;
@@ -17,9 +18,13 @@ public class UserRegisterService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+
     public UserRegisterResponse register(UserRegisterRequest registerRequest){
-        if(userCheck(registerRequest.getEmail())){
-            throw new RuntimeException(HttpStatus.CONFLICT.name());
+        if(checkUserPin(registerRequest.getUserPin())){
+            throw new UserConflictException(HttpStatus.CONFLICT.name(), "userPin is already used"); //
+        }
+        if(checkEmail(registerRequest.getEmail())){
+            throw new UserConflictException(HttpStatus.CONFLICT.name(), "user email is already user"); //
         }
         User user = userMapper.requestToEntity(registerRequest);
         User userSave = userRepository.save(user);
@@ -27,8 +32,10 @@ public class UserRegisterService {
         return userMapper.registerToResponse(user);
     }
 
-    private boolean userCheck(String email){
-        User userEmail = userRepository.findByEmail(email);
-        return userEmail!=null;
+    private boolean checkUserPin(String userPin){
+        return userRepository.findByUserPin(userPin)!= null;
+    }
+    private boolean checkEmail(String email){
+        return userRepository.findByEmail(email)!=null;
     }
 }
