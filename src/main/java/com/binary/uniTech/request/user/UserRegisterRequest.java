@@ -14,6 +14,7 @@ public class UserRegisterRequest {
 
     private Long id;
     private String userName;
+    private String userPin;
     private String email;
     private String password;
     private Boolean emailVerified;

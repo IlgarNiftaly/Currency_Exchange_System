@@ -21,15 +21,13 @@ public class User {
 
     private String userName;
 
+    private String userPin;
 
     private String email;
 
-
     private String password;
 
-
     private Boolean emailVerified;
-
 
     private Long fkAccountId;
 
