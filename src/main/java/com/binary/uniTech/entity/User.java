@@ -1,5 +1,8 @@
 package com.binary.uniTech.entity;
 
+import com.binary.uniTech.validation.EmailValid;
+import com.binary.uniTech.validation.FinValid;
+import com.binary.uniTech.validation.InfoValid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @InfoValid
     private String userName;
 
+    @FinValid
     private String userPin;
 
+    @EmailValid
     private String email;
 
+    @InfoValid
     private String password;
 
     private Boolean emailVerified;
