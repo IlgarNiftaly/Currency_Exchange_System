@@ -24,7 +24,7 @@ public class UserRegisterService {
             throw new UserConflictException(HttpStatus.CONFLICT.name(), "userPin is already used"); //
         }
         if(checkEmail(registerRequest.getEmail())){
-            throw new UserConflictException(HttpStatus.CONFLICT.name(), "user email is already user"); //
+            throw new UserConflictException(HttpStatus.CONFLICT.name(), "user email is already used"); //
         }
         User user = userMapper.requestToEntity(registerRequest);
         User userSave = userRepository.save(user);
