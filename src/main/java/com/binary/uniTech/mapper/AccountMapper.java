@@ -23,5 +23,5 @@ public interface AccountMapper {
     AccountUpdateResponse updateToResponse(Account account);
     AccountDeleteResponse deleteToResponse(Account account);
 
-    List<AccountReadResponse> listEntityToListResponse(List<Account> accountList);
+    List<AccountReadResponse> listEntityToListResponse(List<Account> account);
 }
