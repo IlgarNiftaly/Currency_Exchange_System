@@ -1,16 +1,11 @@
 package com.binary.uniTech.controller;
 
 
-import com.binary.uniTech.request.account.AccountCreateRequest;
-import com.binary.uniTech.request.account.AccountReadRequest;
-import com.binary.uniTech.request.account.AccountUpdateRequest;
+import com.binary.uniTech.request.account.*;
 import com.binary.uniTech.response.account.AccountCreateResponse;
 import com.binary.uniTech.response.account.AccountReadResponse;
 import com.binary.uniTech.response.account.AccountUpdateResponse;
-import com.binary.uniTech.service.account.AccountCreateService;
-import com.binary.uniTech.service.account.AccountDeleteService;
-import com.binary.uniTech.service.account.AccountReadService;
-import com.binary.uniTech.service.account.AccountUpdateService;
+import com.binary.uniTech.service.account.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +21,8 @@ public class AccountController {
     private final AccountCreateService createService;
     private final AccountReadService readService;
     private final AccountUpdateService updateService;
-//    private final AccountDeleteService deleteService;
+    private final AccountDeleteService deleteService;
+    private final AccountTransferService transferService;
 
 
     @PostMapping("/create")
@@ -63,6 +59,27 @@ public class AccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<AccountUpdateResponse> update(@RequestBody @Valid AccountUpdateRequest updateRequest){
         return ResponseEntity.ok(updateService.update(updateRequest));
+    }
+
+    @PostMapping("/deleteAll")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> deleteAll(){
+        deleteService.deleteAll();
+        return ResponseEntity.ok().body("All account is deleted");
+    }
+
+    @PostMapping("/deleteByAccountNumber")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> deleteByAccountNumber(@RequestBody @Valid AccountDeleteRequest deleteRequest){
+        deleteService.deleteByAccountNumber(deleteRequest);
+        return ResponseEntity.ok().body("Account is deleted");
+    }
+
+    @PostMapping("/transferToAnyBankCard")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> transferToAnyBankCard(@RequestBody @Valid AccountTransferRequest transferRequest){
+        transferService.transferToAnyBankCard(transferRequest);
+        return ResponseEntity.ok().body("Transfer accepted");
     }
 
 }

@@ -1,21 +1,24 @@
 package com.binary.uniTech.exception.handler;
 
-import com.binary.uniTech.exception.AccountConflictException;
-import com.binary.uniTech.exception.AccountNotFoundException;
-import com.binary.uniTech.exception.UserConflictException;
-import com.binary.uniTech.exception.UserNotFoundException;
+import com.binary.uniTech.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static org.springframework.http.HttpStatus.CONFLICT;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @RestControllerAdvice
 @Slf4j
 public class CustomException {
+
+    @ExceptionHandler(AccountBalanceException.class)
+    @ResponseStatus(PAYMENT_REQUIRED)
+    public ProblemDetail handlerAccountBalanceException(Exception exception){
+        log.info("handlerAccountBalanceException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(CONFLICT, exception.getMessage());
+    }
 
     @ExceptionHandler(AccountNotFoundException.class)
     @ResponseStatus(CONFLICT)
