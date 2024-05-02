@@ -1,16 +1,10 @@
 package com.binary.uniTech.controller;
 
-import com.binary.uniTech.request.user.UserDeleteRequest;
-import com.binary.uniTech.request.user.UserReadRequest;
-import com.binary.uniTech.request.user.UserRegisterRequest;
-import com.binary.uniTech.request.user.UserUpdateRequest;
+import com.binary.uniTech.request.user.*;
 import com.binary.uniTech.response.user.UserReadResponse;
 import com.binary.uniTech.response.user.UserRegisterResponse;
 import com.binary.uniTech.response.user.UserUpdateResponse;
-import com.binary.uniTech.service.user.UserDeleteService;
-import com.binary.uniTech.service.user.UserReadService;
-import com.binary.uniTech.service.user.UserRegisterService;
-import com.binary.uniTech.service.user.UserUpdateService;
+import com.binary.uniTech.service.user.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,12 +22,19 @@ public class UserController {
     private final UserReadService readService;
     private final UserUpdateService updateService;
     private final UserDeleteService deleteService;
+    private final UserLoginService loginService;
 
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserRegisterResponse> register(@RequestBody @Valid UserRegisterRequest registerRequest){
         return ResponseEntity.ok(registerService.register(registerRequest));
+    }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean login(@RequestBody @Valid UserLoginRequest loginRequest){
+        return loginService.login(loginRequest);
     }
 
     @PostMapping("/readAll")

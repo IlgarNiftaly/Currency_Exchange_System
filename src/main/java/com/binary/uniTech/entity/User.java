@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.EnableMBeanExport;
 
 
 @Entity
@@ -19,22 +20,29 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @InfoValid
+    @Column(name = "user_name")
     private String userName;
 
     @FinValid
+    @Column(name = "user_pin")
     private String userPin;
 
     @EmailValid
+    @Column(name = "email")
     private String email;
 
     @InfoValid
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "email_verified")
     private Boolean emailVerified;
 
+    @Column(name = "fk_account_id")
     private Long fkAccountId;
 
 }

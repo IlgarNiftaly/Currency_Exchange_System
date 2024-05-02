@@ -1,5 +1,7 @@
 package com.binary.uniTech.exception.handler;
 
+import com.binary.uniTech.exception.AccountConflictException;
+import com.binary.uniTech.exception.AccountNotFoundException;
 import com.binary.uniTech.exception.UserConflictException;
 import com.binary.uniTech.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,20 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RestControllerAdvice
 @Slf4j
 public class CustomException {
+
+    @ExceptionHandler(AccountNotFoundException.class)
+    @ResponseStatus(CONFLICT)
+    public ProblemDetail handlerAccountNotFoundException(Exception exception){
+        log.info("handlerAccountNotFoundException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(CONFLICT, exception.getMessage());
+    }
+
+    @ExceptionHandler(AccountConflictException.class)
+    @ResponseStatus(CONFLICT)
+    public ProblemDetail handlerAccountConflictException(Exception exception){
+        log.info("handlerAccountConflictException {}", exception.getMessage());
+        return ProblemDetail.forStatusAndDetail(CONFLICT, exception.getMessage());
+    }
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(NOT_FOUND)
