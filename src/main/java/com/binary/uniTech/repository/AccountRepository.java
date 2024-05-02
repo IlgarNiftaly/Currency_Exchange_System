@@ -14,4 +14,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<AccountWrapper> findAllAccountWrapper();
 
     Account findByAccountNumber(String accountNumber);
+    Account findByFkUserId(Long userId);
+    Account findByStatus(String status);
+
+//    Account findByAccountNumberOrStatusIn(String accountNumber, String status);
+
 }

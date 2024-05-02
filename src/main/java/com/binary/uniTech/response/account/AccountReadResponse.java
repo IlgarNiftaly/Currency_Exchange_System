@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class AccountReadResponse {
 
+    private Long id;
     private String accountNumber;
     private BigDecimal balance;
     private Long fkUserId;

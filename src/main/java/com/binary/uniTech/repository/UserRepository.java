@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query("""
-            select new com.binary.uniTech.wrapper.UserWrapper(u.id, u.userName, u.email, u.password, u.emailVerified, u.fkAccountId) from User u
+            select new com.binary.uniTech.wrapper.UserWrapper(u.id, u.userName, u.userPin, u.email, u.password, u.emailVerified, u.fkAccountId) from User u
             """)
 
     List<UserWrapper> findAllUserWrapper();

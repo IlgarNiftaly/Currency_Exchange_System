@@ -27,7 +27,8 @@ public class AccountWrapper {
     }
 
     public AccountWrapper(Long id, String accountNumber, String status){
-        this(id, accountNumber);
+        this.id = id;
+        this.accountNumber = accountNumber;
         this.status = status;
     }
 
