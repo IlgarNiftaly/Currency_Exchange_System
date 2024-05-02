@@ -15,9 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class AccountDeleteRequest {
 
+    private Long id;
     private String accountNumber;
-    private BigDecimal balance;
-    private Long fkUserId;
-    private String status;
 
 }
