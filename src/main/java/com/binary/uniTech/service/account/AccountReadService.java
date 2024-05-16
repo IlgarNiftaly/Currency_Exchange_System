@@ -1,21 +1,14 @@
 package com.binary.uniTech.service.account;
 
-import com.binary.uniTech.entity.Account;
-import com.binary.uniTech.entity.User;
 import com.binary.uniTech.exception.AccountNotFoundException;
-import com.binary.uniTech.exception.UserNotFoundException;
 import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.AccountMapper;
 import com.binary.uniTech.repository.AccountRepository;
-import com.binary.uniTech.repository.UserRepository;
-import com.binary.uniTech.request.account.AccountCreateRequest;
 import com.binary.uniTech.request.account.AccountReadRequest;
-import com.binary.uniTech.response.account.AccountCreateResponse;
 import com.binary.uniTech.response.account.AccountReadResponse;
 import com.binary.uniTech.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
