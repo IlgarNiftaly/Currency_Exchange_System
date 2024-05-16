@@ -3,13 +3,13 @@ package com.binary.uniTech.service.user;
 
 import com.binary.uniTech.entity.User;
 import com.binary.uniTech.exception.UserNotFoundException;
+import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.UserMapper;
 import com.binary.uniTech.repository.UserRepository;
 import com.binary.uniTech.request.user.UserUpdateRequest;
 import com.binary.uniTech.response.user.UserUpdateResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class UserUpdateService {
 
     public UserUpdateResponse update(UserUpdateRequest updateRequest){
         User user = userRepository.findById(updateRequest.getId())
-                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND.name(), "User with this ID does not exist"));
+                .orElseThrow(() -> new UserNotFoundException(ErrorMessage.USER_NOT_FOUND));
 
         if (Objects.nonNull(updateRequest.getUserName())) {
             user.setUserName(updateRequest.getUserName());

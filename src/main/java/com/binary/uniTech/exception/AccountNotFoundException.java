@@ -1,8 +1,10 @@
 package com.binary.uniTech.exception;
 
-public class AccountNotFoundException extends RuntimeException{
+import org.springframework.http.HttpStatus;
 
-    public AccountNotFoundException(String code, String message){
-        super(message);
+public class AccountNotFoundException extends GenericException{
+
+    public AccountNotFoundException(String message){
+        super(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), message);
     }
 }

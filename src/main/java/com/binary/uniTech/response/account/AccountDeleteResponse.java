@@ -1,7 +1,6 @@
 package com.binary.uniTech.response.account;
 
 
-import com.binary.uniTech.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,5 @@
 package com.binary.uniTech.wrapper;
 
-import com.binary.uniTech.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

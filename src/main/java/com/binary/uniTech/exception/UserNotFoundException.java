@@ -1,8 +1,13 @@
 package com.binary.uniTech.exception;
 
-public class UserNotFoundException extends RuntimeException{
+import org.springframework.http.HttpStatus;
 
-    public UserNotFoundException(String code, String message){
-        super(message);
+
+public class UserNotFoundException extends GenericException{
+
+    public UserNotFoundException(String message){
+        super(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.value(), message);
     }
+
+
 }

@@ -40,7 +40,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email_verified")
+    @Column(name = "email_verified", nullable = false)
     private Boolean emailVerified;
 
     @Column(name = "fk_account_id")
