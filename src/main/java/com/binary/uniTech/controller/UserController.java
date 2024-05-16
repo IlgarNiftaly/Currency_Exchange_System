@@ -100,6 +100,10 @@ public class UserController {
         deleteService.deleteByUserPin(deleteRequest);
         return ResponseEntity.ok().body("user is deleted");
     }
+
+
+
+
 }
 
 

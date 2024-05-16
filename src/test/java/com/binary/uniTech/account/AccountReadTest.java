@@ -49,24 +49,9 @@ public class AccountReadTest {
         List<AccountReadResponse> expectedResponse = Collections.singletonList(new AccountReadResponse());
         when(accountMapper.listEntityToListResponse(accounts)).thenReturn(expectedResponse);
 
-        // Test
         List<AccountReadResponse> actualResponse = readService.readAll();
 
-        // Verification
         assertEquals(expectedResponse.size(), actualResponse.size());
-
-
-//        List<Account> accounts = Collections.singletonList(new Account());
-//
-//        when(accountRepository.findAll()).thenReturn(accounts);
-//        verifyNoInteractions(accountMapper);
-//
-//        List<AccountReadResponse> response = readService.readAll();
-//
-//        assertNotNull(response);
-//        assertEquals(accounts.size(), response.size());
-//        verify(accountMapper, times(1)).listEntityToListResponse(accounts);
-
     }
 
     @Test
