@@ -1,9 +1,16 @@
 package com.binary.uniTech.service.account;
 
+import com.binary.uniTech.entity.Account;
+import com.binary.uniTech.entity.User;
 import com.binary.uniTech.exception.AccountNotFoundException;
+import com.binary.uniTech.exception.UserNotFoundException;
+import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.AccountMapper;
 import com.binary.uniTech.repository.AccountRepository;
+import com.binary.uniTech.repository.UserRepository;
+import com.binary.uniTech.request.account.AccountCreateRequest;
 import com.binary.uniTech.request.account.AccountReadRequest;
+import com.binary.uniTech.response.account.AccountCreateResponse;
 import com.binary.uniTech.response.account.AccountReadResponse;
 import com.binary.uniTech.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -28,21 +34,21 @@ public class AccountReadService {
 
     public AccountReadResponse readByAccountNumber(AccountReadRequest readRequest){
         if(authenticationService.checkAccountWithAccountNumber(readRequest.getAccountNumber())){
-            throw new AccountNotFoundException(HttpStatus.NOT_FOUND.name(), "this accountNumber does not exist");
+            throw new AccountNotFoundException(ErrorMessage.ACCOUNT_NOT_FOUND);
         }
         return accountMapper.readToResponse(accountRepository.findByAccountNumber(String.valueOf(readRequest)));
     }
 
     public AccountReadResponse readByFkUserId(AccountReadRequest readRequest){
         if(authenticationService.checkAccountWithFkUserId(readRequest.getFkUserId())){
-            throw new AccountNotFoundException(HttpStatus.NOT_FOUND.name(), "this fkUserId does not exist");
+            throw new AccountNotFoundException(ErrorMessage.ACCOUNT_NOT_FOUND);
         }
         return accountMapper.readToResponse(accountRepository.findByFkUserId(readRequest.getFkUserId()));
     }
 
     public AccountReadResponse readByStatus(AccountReadRequest readRequest){
         if(authenticationService.checkAccountWithStatus(readRequest.getStatus())){
-            throw new AccountNotFoundException(HttpStatus.NOT_FOUND.name(), "this status does not exist");
+            throw new AccountNotFoundException(ErrorMessage.ACCOUNT_NOT_FOUND);
         }
         return accountMapper.readToResponse(accountRepository.findByStatus(readRequest.getStatus()));
     }

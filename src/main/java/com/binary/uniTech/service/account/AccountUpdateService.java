@@ -2,6 +2,7 @@ package com.binary.uniTech.service.account;
 
 import com.binary.uniTech.entity.Account;
 import com.binary.uniTech.exception.AccountConflictException;
+import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.AccountMapper;
 import com.binary.uniTech.repository.AccountRepository;
 import com.binary.uniTech.request.account.AccountUpdateRequest;
@@ -9,7 +10,6 @@ import com.binary.uniTech.response.account.AccountUpdateResponse;
 import com.binary.uniTech.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -25,7 +25,7 @@ public class AccountUpdateService {
     public AccountUpdateResponse update(AccountUpdateRequest updateRequest){
         Account account = authenticationService.checkAccountWithId(updateRequest.getId());
         if(!authenticationService.checkAccountWithAccountNumber(updateRequest.getAccountNumber())){
-            throw new AccountConflictException(HttpStatus.NOT_FOUND.name(), "this accountNumber is exist");
+            throw new AccountConflictException(ErrorMessage.ACCOUNTNUMBER_ALREADY_EXISTS);
         }
 
         if(Objects.nonNull(updateRequest.getAccountNumber())){

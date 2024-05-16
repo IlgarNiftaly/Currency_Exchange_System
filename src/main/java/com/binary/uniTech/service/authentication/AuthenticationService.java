@@ -2,6 +2,7 @@ package com.binary.uniTech.service.authentication;
 
 import com.binary.uniTech.entity.Account;
 import com.binary.uniTech.exception.AccountNotFoundException;
+import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.repository.AccountRepository;
 import com.binary.uniTech.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class AuthenticationService {
 
     public Account checkAccountWithId(Long id){
         return accountRepository.findById(id)
-                .orElseThrow(() -> new AccountNotFoundException(HttpStatus.NOT_FOUND.name(), "this id does not exist"));
+                .orElseThrow(() -> new AccountNotFoundException(ErrorMessage.ACCOUNT_NOT_FOUND));
     }
 
     public boolean checkAccountWithAccountNumber(String accountNumber){

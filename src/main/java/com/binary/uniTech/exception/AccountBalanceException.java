@@ -1,8 +1,10 @@
 package com.binary.uniTech.exception;
 
-public class AccountBalanceException extends RuntimeException{
+import org.springframework.http.HttpStatus;
 
-    public AccountBalanceException(String code, String message){
-        super(message);
+public class AccountBalanceException extends GenericException{
+
+    public AccountBalanceException(String message){
+        super(HttpStatus.PAYMENT_REQUIRED, HttpStatus.PAYMENT_REQUIRED.value(), message);
     }
 }

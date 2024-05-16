@@ -1,8 +1,10 @@
 package com.binary.uniTech.exception;
 
-public class AccountConflictException extends RuntimeException{
+import org.springframework.http.HttpStatus;
 
-    public AccountConflictException(String code, String message){
-        super(message);
+public class AccountConflictException extends GenericException{
+
+    public AccountConflictException(String message){
+        super(HttpStatus.CONFLICT, HttpStatus.CONFLICT.value(), message);
     }
 }

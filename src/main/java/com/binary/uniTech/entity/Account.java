@@ -1,7 +1,6 @@
 package com.binary.uniTech.entity;
 
 
-import com.binary.uniTech.enums.Status;
 import com.binary.uniTech.validation.AccountNumberValid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

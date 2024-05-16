@@ -2,6 +2,8 @@ package com.binary.uniTech.service.user;
 
 
 import com.binary.uniTech.entity.User;
+import com.binary.uniTech.exception.AccountNotFoundException;
+import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.UserMapper;
 import com.binary.uniTech.repository.UserRepository;
 import com.binary.uniTech.request.user.UserLoginRequest;
@@ -22,9 +24,8 @@ public class UserLoginService {
     public boolean login(UserLoginRequest loginRequest){
         User login = userRepository.findByUserPin(loginRequest.getUserPin());
         if(Objects.isNull(login) || !login.getPassword().equals(loginRequest.getPassword())){
-            System.out.println("pin or password is incorrect");
             log.info("pin or password is incorrect");
-            return false;
+            throw new AccountNotFoundException(ErrorMessage.INCORRECT_PASSWORD);
         }
 
         return true;
