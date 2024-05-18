@@ -19,6 +19,7 @@ import org.mockito.quality.Strictness;
 
 import java.math.BigDecimal;
 
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -47,14 +48,14 @@ public class AccountUpdateTest {
         request.setAccountNumber("4169738873966802");
         request.setBalance(BigDecimal.valueOf(1000.0));
         request.setFkUserId(2L);
-        request.setStatus("A");
+        request.setStatus(ACTIVE);
 
         Account account = new Account();
         account.setId(1L);
         account.setAccountNumber("4169738873966802");
         account.setBalance(BigDecimal.valueOf(500.0));
         account.setFkUserId(1L);
-        account.setStatus("A");
+        account.setStatus(ACTIVE);
 
         // Mock behaviors
         when(authenticationService.checkAccountWithId(1L)).thenReturn(account);
@@ -66,9 +67,9 @@ public class AccountUpdateTest {
 
         // Verification
         assertEquals("4169738873966802", response.getAccountNumber());
-        assertEquals(1000.0, response.getBalance());
+        assertEquals(BigDecimal.valueOf(1000.0), response.getBalance());
         assertEquals(2L, response.getFkUserId());
-        assertEquals("A", response.getStatus());
+        assertEquals(ACTIVE, response.getStatus());
     }
 
     @Test
@@ -79,14 +80,14 @@ public class AccountUpdateTest {
         request.setAccountNumber("123456789");
         request.setBalance(BigDecimal.valueOf(1000.0));
         request.setFkUserId(2L);
-        request.setStatus("A");
+        request.setStatus(ACTIVE);
 
         Account mockAccount = new Account();
         mockAccount.setId(1L);
         mockAccount.setAccountNumber("123456789");
         mockAccount.setBalance(BigDecimal.valueOf(500.0));
         mockAccount.setFkUserId(1L);
-        mockAccount.setStatus("A");
+        mockAccount.setStatus(ACTIVE);
 
         when(authenticationService.checkAccountWithId(1L)).thenReturn(mockAccount);
         when(authenticationService.checkAccountWithAccountNumber("123456789")).thenReturn(true);

@@ -16,6 +16,7 @@ import org.mockito.quality.Strictness;
 
 import java.math.BigDecimal;
 
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -42,12 +43,12 @@ public class AccountTransferTest {
         Account senderAccount = new Account();
         senderAccount.setAccountNumber("123456789");
         senderAccount.setBalance(BigDecimal.valueOf(2000));
-        senderAccount.setStatus("A");
+        senderAccount.setStatus(ACTIVE);
 
         Account recipientAccount = new Account();
         recipientAccount.setAccountNumber("987654321");
         recipientAccount.setBalance(BigDecimal.valueOf(5000));
-        recipientAccount.setStatus("A");
+        recipientAccount.setStatus(ACTIVE);
 
         // Mock behaviors
         when(accountRepository.findByAccountNumber("123456789")).thenReturn(senderAccount);
@@ -72,12 +73,12 @@ public class AccountTransferTest {
         Account senderAccount = new Account();
         senderAccount.setAccountNumber("123456789");
         senderAccount.setBalance(BigDecimal.valueOf(2000));
-        senderAccount.setStatus("A");
+        senderAccount.setStatus(ACTIVE);
 
         Account recipientAccount = new Account();
         recipientAccount.setAccountNumber("987654321");
         recipientAccount.setBalance(BigDecimal.valueOf(5000));
-        recipientAccount.setStatus("A");
+        recipientAccount.setStatus(ACTIVE);
 
         // Mock behaviors
         when(accountRepository.findByAccountNumber("123456789")).thenReturn(senderAccount);

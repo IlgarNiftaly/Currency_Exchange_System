@@ -1,5 +1,6 @@
 package com.binary.uniTech.request.account;
 
+import com.binary.uniTech.enums.AccountStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,6 @@ public class AccountReadRequest {
     private Long id;
     private String accountNumber;
     private Long fkUserId;
-    private String status;
+    private AccountStatus status;
 
 }

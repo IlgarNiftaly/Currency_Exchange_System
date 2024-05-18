@@ -7,6 +7,8 @@ import com.binary.uniTech.response.account.AccountCreateResponse;
 
 import java.math.BigDecimal;
 
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
+
 public class AccountUtil {
 
     private AccountUtil(){
@@ -18,7 +20,7 @@ public class AccountUtil {
         createRequest.setAccountNumber("4169738873966802");
         createRequest.setBalance(BigDecimal.valueOf(1000));
         createRequest.setFkUserId(1L);
-        createRequest.setStatus("ACTIVE");
+        createRequest.setStatus(ACTIVE);
 
         return createRequest;
     }
@@ -28,7 +30,7 @@ public class AccountUtil {
         createResponse.setAccountNumber("4169738873966802");
         createResponse.setBalance(BigDecimal.valueOf(1000));
         createResponse.setFkUserId(1L);
-        createResponse.setStatus("ACTIVE");
+        createResponse.setStatus(ACTIVE);
 
         return createResponse;
     }
@@ -38,7 +40,7 @@ public class AccountUtil {
         account.setAccountNumber("4169738873966802");
         account.setBalance(BigDecimal.valueOf(1000));
         account.setFkUserId(1L);
-        account.setStatus("ACTIVE");
+        account.setStatus(ACTIVE);
 
         return account;
     }

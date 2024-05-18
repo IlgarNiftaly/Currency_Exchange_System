@@ -1,6 +1,7 @@
 package com.binary.uniTech.service.account;
 
 import com.binary.uniTech.entity.Account;
+import com.binary.uniTech.enums.AccountStatus;
 import com.binary.uniTech.exception.AccountConflictException;
 import com.binary.uniTech.exception.error.ErrorMessage;
 import com.binary.uniTech.mapper.AccountMapper;
@@ -38,7 +39,7 @@ public class AccountUpdateService {
             account.setFkUserId(updateRequest.getFkUserId());
         }
         if(Objects.nonNull(updateRequest.getStatus())){
-            account.setStatus(updateRequest.getStatus());
+            account.setStatus(AccountStatus.valueOf(updateRequest.getStatus()));
         }
         accountRepository.save(account);
         log.info("account updated {}", account);

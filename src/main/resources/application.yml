@@ -20,16 +20,15 @@ spring:
           persistence:
             sharedCache:
               mode: ENABLE_SELECTIVE
-
 currency:
   api:
     key: 6cf4a0dbeddf7c5903e365f1
     url: https://open.er-api.com/v6/latest
 
 
-  #  liquibase:
-  #    change-log: liquibase/changelog-master.yml
-  #    enabled: false
+#    liquibase:
+#      change-log: liquibase/changelog-master.yml
+#      enabled: false
 
   mail:
     host: smtp.gmail.com
@@ -43,6 +42,8 @@ currency:
           auth: true
           ssl:
             enable: true
-
+jwt:
+  secret: 87wn4cy8s4rzt8qw3mar47bfr
+  lifetime: 30m
 
 

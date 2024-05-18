@@ -1,5 +1,6 @@
 package com.binary.uniTech.account;
 
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -119,10 +120,10 @@ class AccountControllerTest {
     @Test
     public void testReadByStatus() throws Exception {
         AccountReadRequest request = new AccountReadRequest();
-        request.setStatus("ACTIVE");
+        request.setStatus(ACTIVE);
 
         AccountReadResponse response = new AccountReadResponse();
-        response.setStatus("ACTIVE");
+        response.setStatus(ACTIVE);
 
         when(readService.readByStatus(any(AccountReadRequest.class))).thenReturn(response);
 
@@ -140,7 +141,7 @@ class AccountControllerTest {
         request.setAccountNumber("123456789");
         request.setBalance(BigDecimal.valueOf(1000.0));
         request.setFkUserId(2L);
-        request.setStatus("A");
+        request.setStatus(ACTIVE);
 
         AccountUpdateResponse response = new AccountUpdateResponse();
         response.setAccountNumber("123456789");
