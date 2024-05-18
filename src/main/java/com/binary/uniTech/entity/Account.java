@@ -1,6 +1,7 @@
 package com.binary.uniTech.entity;
 
 
+import com.binary.uniTech.enums.AccountStatus;
 import com.binary.uniTech.validation.AccountNumberValid;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
 
 @Entity
 @Getter
@@ -35,12 +38,13 @@ public class Account {
     private Long fkUserId;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 
     @PrePersist
     public void prePersist(){
         if(status == null){
-            status = "A";
+            status = ACTIVE;
         }
     }
 

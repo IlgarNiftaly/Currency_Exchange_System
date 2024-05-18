@@ -2,6 +2,7 @@ package com.binary.uniTech.service.account;
 
 
 import com.binary.uniTech.entity.Account;
+import com.binary.uniTech.enums.AccountStatus;
 import com.binary.uniTech.exception.AccountBalanceException;
 import com.binary.uniTech.exception.AccountConflictException;
 import com.binary.uniTech.exception.AccountNotFoundException;
@@ -10,6 +11,8 @@ import com.binary.uniTech.repository.AccountRepository;
 import com.binary.uniTech.request.account.AccountTransferRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import static com.binary.uniTech.enums.AccountStatus.ACTIVE;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +31,7 @@ public class AccountTransferService {
         if(senderAccount.getAccountNumber().equals(recipientAccount.getAccountNumber())){
             throw new AccountConflictException(ErrorMessage.ACCOUNT_IDENTICAL);
         }
-        if(!recipientAccount.getStatus().equals("A")){
+        if(!recipientAccount.getStatus().equals(ACTIVE)){
             throw new AccountConflictException(ErrorMessage.ACCOUNT_DISABLE);
         }
 
