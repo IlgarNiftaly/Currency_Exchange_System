@@ -39,7 +39,7 @@ public class AccountUpdateService {
             account.setFkUserId(updateRequest.getFkUserId());
         }
         if(Objects.nonNull(updateRequest.getStatus())){
-            account.setStatus(AccountStatus.valueOf(updateRequest.getStatus()));
+            account.setStatus(AccountStatus.valueOf(String.valueOf(updateRequest.getStatus())));
         }
         accountRepository.save(account);
         log.info("account updated {}", account);
